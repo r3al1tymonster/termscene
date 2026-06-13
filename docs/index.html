@@ -89,15 +89,19 @@
   .cta-sub{margin-top:11px;font-size:12.5px;color:var(--faint)}
   .cta-sub b{color:var(--soft);font-weight:500}
 
-  /* secondary: install options on ONE compact line, de-emphasized */
-  .secondary-installs{margin-top:20px;
-    max-width:840px;margin-left:auto;margin-right:auto;
-    display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
-  .installs{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
-  /* flat install pill — no internal separators; muted tag + command, copy on hover */
+  /* secondary door: the agent/skill path — clearly the second of two choices */
+  .skill-door{margin-top:34px;max-width:560px;margin-left:auto;margin-right:auto}
+  /* "or, in your editor" rule — visually separates the two doors */
+  .door-or{display:flex;align-items:center;gap:14px;color:var(--faint);font-size:11.5px;
+    letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px}
+  .door-or::before,.door-or::after{content:"";flex:1;height:1px;background:var(--line)}
+  .door-label{color:var(--soft);font-size:13.5px;line-height:1.55;margin-bottom:14px}
+  .door-label b{color:var(--ink);font-weight:600}
+  /* flat install pill — muted tag + command, copy on hover */
   .inst{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);border-radius:8px;
     background:var(--panel);padding:7px 12px;transition:.18s;cursor:pointer}
   .inst:hover{border-color:var(--accent-dim)}
+  .inst-skill{margin:0 auto}
   .inst .lbl{color:var(--muted);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase}
   .inst .cmd{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink);white-space:nowrap}
   .inst .cmd .p{flex:none;color:var(--accent)}
@@ -105,8 +109,10 @@
     cursor:pointer;transition:.15s;padding:0}
   .inst:hover .copy{color:var(--muted)}
   .inst .copy:hover{color:var(--ink)}
-  .installs-hint{margin-top:9px;font-size:11.5px;color:var(--faint);width:100%}
-  .installs-hint b{color:var(--soft);font-weight:500}
+  .door-hint{margin-top:12px;font-size:11.5px;color:var(--faint);line-height:1.5}
+  .door-hint b{color:var(--soft);font-weight:500}
+  .door-hint a{color:var(--muted);text-decoration:underline;text-underline-offset:2px}
+  .door-hint a:hover{color:var(--soft)}
 
   /* hero clip — large centered preview below the copy */
   .stage{position:relative;z-index:1;margin-top:42px;padding:0 24px}
@@ -202,10 +208,9 @@
   }
   @media (max-width:600px){
     .tbreak{display:none}                       /* let the title wrap naturally on small screens */
-    .secondary-installs{flex-direction:column;gap:10px}
   }
   @media (max-width:520px){
-    .inst{width:100%;max-width:380px}
+    .inst-skill{display:flex;width:100%;max-width:380px}
     .inst .cmd{flex:1;min-width:0;white-space:normal;word-break:break-word;align-items:flex-start}
   }
 </style>
@@ -230,27 +235,22 @@
 <section class="hero">
   <div class="wrap">
     <h1 class="reveal">Show the terminal experience<br class="tbreak"> <span class="g">before you build it.</span></h1>
-    <p class="lede reveal">Write the commands and the output in a few lines of script; termscene renders a clean, frame-perfect terminal video — to pitch a CLI concept, explain an idea, or drop a crisp terminal moment into a deck, demo, or launch post.</p>
+    <p class="lede reveal">Write the commands and the output in a few lines of script; termscene renders a clean, frame-perfect terminal video — for the experience you want to show, even one that doesn't exist yet.</p>
 
     <div class="cta-row reveal">
       <a class="cta cta-primary" href="playground/"><span class="play">▶</span> Open the playground</a>
-      <a class="cta cta-ghost" href="#gallery">See the gallery</a>
     </div>
     <p class="cta-sub reveal">No install, no signup — <b>author a scene and export an mp4/gif right in your browser.</b></p>
 
-    <div class="secondary-installs reveal">
-      <div class="installs">
-        <div class="inst">
-          <span class="lbl">cli</span>
-          <div class="cmd"><span class="p">$</span> npx termscene render demo.scene.json</div>
-          <button class="copy" data-copy="npx termscene render demo.scene.json --out demo.gif">copy</button>
-        </div>
-        <div class="inst">
-          <span class="lbl">skill</span>
-          <div class="cmd"><span class="p">$</span> npx skills add r3al1tym/termscene</div>
-          <button class="copy" data-copy="npx skills add r3al1tym/termscene">copy</button>
-        </div>
+    <div class="skill-door reveal">
+      <p class="door-or"><span>or, in your editor</span></p>
+      <p class="door-label"><b>Add the skill, then describe the clip you want.</b> It teaches your agent the termscene loop — author the scene, lint, preview, render — so it builds the video for you.</p>
+      <div class="inst inst-skill">
+        <span class="lbl">skill</span>
+        <div class="cmd"><span class="p">$</span> npx skills add r3al1tym/termscene</div>
+        <button class="copy" data-copy="npx skills add r3al1tym/termscene">copy</button>
       </div>
+      <p class="door-hint">Works with <b>Claude Code</b>, Cursor, Gemini CLI, Codex &amp; other agents that support skills · also on <a href="https://github.com/r3al1tym/termscene" rel="noopener" target="_blank">npm</a> as the reference renderer for CI &amp; byte-stable output</p>
     </div>
   </div>
 </section>
